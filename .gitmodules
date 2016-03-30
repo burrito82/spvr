@@ -1,0 +1,8 @@
+[submodule "control_repo"]
+	path = control_repo
+	url = https://github.com/burrito82/spvr.control.git
+	branch = master
+[submodule "android_repo"]
+	path = android_repo
+	url = https://github.com/burrito82/spvr.android.git
+	branch = master
