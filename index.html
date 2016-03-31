@@ -38,8 +38,8 @@ Cardboard games, which run directly on your device. SPVR is used to play games
 on your computer, which use the <a
 href="https://github.com/ValveSoftware/openvr" target=_blank>OpenVR /
 SteamVR API</a>. That is, almost all games or applications, that <a
-target=_blank href="http://store.steampowered.com/search/?vrsupport=101">can be
-used with the HTC Vive</a>.</p>
+target=_blank href="http://store.steampowered.com/search/?vrsupport=101#vrsupport=101%2C301">can be
+used with the HTC Vive and offer a seated experience</a>.</p>
 
 <h3><a id="warning" class="anchor" href="#warning" aria-hidden="true"><span
 aria-hidden="true" class="octicon octicon-link"></span></a>Warning!</h3>
@@ -60,8 +60,11 @@ directs it to the driver instance in the game / application.</p>
 <h3><a id="how-to" class="anchor" href="#how-to" aria-hidden="true"><span
 aria-hidden="true" class="octicon octicon-link"></span></a>How can I build and
 use SPVR?</h3>
-<p>Assuming, you know your way around C++ on windows and how to build an
-android application... you need the following:
+<p>At least, you need to know how to build and run an android application,
+since I currently don't have a pre-packaged apk. For the windows part, you can
+either use the <a
+href="https://github.com/burrito82/spvr.control/files/196568/spvr.zip">provided
+binary</a> or build it yourself.
 <h4>spvr control and driver</h4>
 You can just download the <a
 href="https://github.com/burrito82/spvr.control/files/196568/spvr.zip">binary</a>,
@@ -75,24 +78,27 @@ building it yourself you need:
     <li><a href="http://glm.g-truc.net/0.9.5/index.html"
         target=_blank>glm</a></li>
 </ul>
-First checkout <i>spvr.control</i> from <a
-    href="https://github.com/burrito82/spvr.control" target=_blank>github</a>
-with submodules, and, for later, <a
-    href="https://github.com/burrito82/spvr.android"
-    target=_blank>spvr.android</a>.
+You can checkout the complete <a href="https://github.com/burrito82/spvr"
+    target=_blank>spvr repo</a> by using
+<br><code>git clone https://github.com/burrito82/spvr.git
+    --recursive</code>,</br> which
+contains the source code to <i>spvr.control</i> and <i>spvr.android</i>.
 </p>
-<p>Copy the glm headers into <code>driver/</code>.</p>
+<p>Copy the glm header directory into <code>spvr/control_repo/driver/</code>.</p>
 <p>
+Then you need to generate project files for Visual Studio by using CMake.
+<p align="center">
+<img src="images/cmake-example.jpg" />
+Figure: example cmake configuration
+</p>
 After compiling <i>spvr.driver</i> and <i>spvr.control</i>, the resulting
 <code>driver_spvr.dll</code> needs to be copied into
 <code>PathTo/steamapps/common/SteamVR/drivers/spvr/bin/win32/driver_spvr.dll</code>,
-or <code>.../win64/...</code>, respectively.
-</p>
-<p>
-You can now start the <i>spvr.control</i> (allow network access) and run the
-SteamVR compositor with
-<code>PathTo/steamapps/common/SteamVR/bin/win32/vrcompositor.exe -keepalive
--debug</code>.
+or <code>.../win64/...</code>, respectively. You can also active the
+<code>COPY_AFTER_BUILD</code> in the drivers CMake config, which will
+automatically copy the dll to the given location. You just need to set the
+correct <code>COPY_AFTER_BUILD_BUILD_TYPE</code> to Debug, Release, or
+RelWithDebInfo, whatever you plan to build.
 </p>
 <h4>spvr android</h4>
 <ul>
@@ -100,18 +106,32 @@ SteamVR compositor with
         target=_blank>Android Studio</a></li>
 </ul>
 <p>
-After building and running the android app, you can set the IP.
-<i>spvr.control</i>
-should now print the received sensor data. The compositor's rendering should
-move with your mobile phone.
-</p>
+Checkout <a
+    href="https://github.com/burrito82/spvr.android"
+    target=_blank>spvr.android</a>, if you haven't cloned the spvr repo, by
+using
+<br><code>git clone https://github.com/burrito82/spvr.android.git</code></br>
+It should be easy to build and run the app.
 <h4>To run spvr</h4>
 <ul>
     <li><a href="http://store.steampowered.com/about/" target=_blank>Steam +
         SteamVR</a></li>
     <li><a href="http://trinusvr.com//" target=_blank>TrinusVR</a> - the demo
-        is sufficient for a short experience</li>
+        is sufficient to test if you can handle it, but is restricted to 15
+        minutes of continuous experience</li>
 </ul>
+<p>
+You can now start the <i>spvr.control</i> (allow network access) and run the
+SteamVR compositor with
+<code>PathTo/steamapps/common/SteamVR/bin/win32/vrcompositor.exe -keepalive
+-debug</code>.
+</p>
+After building and running the android app, you can set the IP to the address
+of your computer.
+<i>spvr.control</i>
+should now print the received sensor data. The compositor's rendering should
+move with your mobile phone.
+</p>
 After you established a connection with spvr and the compositor seems to work
 fine, you can start TrinusVR to transfer the rendered image back to your phone.
 
@@ -122,8 +142,8 @@ aria-hidden="true" class="octicon octicon-link"></span></a>Show me an example</h
 <iframe width="560" height="315" src="https://www.youtube.com/embed/65Ngs5gxmz4" frameborder="0" allowfullscreen></iframe>
 </p>
 
-<h3><a id="development" class="anchor" href="#development" aria-hidden="true"><span
-aria-hidden="true" class="octicon octicon-link"></span></a>Development</h3>
+<h3><a id="source-code" class="anchor" href="#source-code" aria-hidden="true"><span
+aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h3>
 <p>
 <ul>
     <li><a href="https://github.com/burrito82/spvr.control">Control source
@@ -132,6 +152,17 @@ aria-hidden="true" class="octicon octicon-link"></span></a>Development</h3>
     <li><a href="https://github.com/burrito82/spvr.android">Android source code</a></li>
     <li><a href="https://github.com/burrito82/spvr.driver">Driver source code</a></li>
 </ul>
+</p>
+
+<h3><a id="development" class="anchor" href="#development" aria-hidden="true"><span
+aria-hidden="true" class="octicon octicon-link"></span></a>Development and
+Contribution</h3>
+<p>
+Contribution would be great! The current state is not great, there is actually
+some undefined behavior, e.g., multiple writers on shared memory. The android
+part is not implemented as a service, but instead sends sensor data from the
+main thread, which android, by default, usually probihits. Much stuff is
+hard-coded. On the other side, it works and development is fun!
 </p>
 
 <h3><a id="faq" class="anchor" href="#faq" aria-hidden="true"><span
@@ -161,7 +192,8 @@ VR mode.
 
           <ul>
             <li><a href="#video">Video</a></li>
-            <li><a href="#development">Source code</a></li>
+            <li><a href="#source-code">Source code</a></li>
+            <li><a href="#development">Development and Contribution</a></li>
             <li><a href="#faq">F.A.Q.</a></li>
           </ul>
 
