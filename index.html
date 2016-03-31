@@ -94,8 +94,8 @@ Figure: example cmake configuration
 After compiling <i>spvr.driver</i> and <i>spvr.control</i>, the resulting
 <code>driver_spvr.dll</code> needs to be copied into
 <code>PathTo/steamapps/common/SteamVR/drivers/spvr/bin/win32/driver_spvr.dll</code>,
-or <code>.../win64/...</code>, respectively. You can also active the
-<code>COPY_AFTER_BUILD</code> in the drivers CMake config, which will
+or <code>.../win64/...</code>, respectively. You can also activate the
+<code>COPY_AFTER_BUILD</code> flag in the drivers CMake config, which will
 automatically copy the dll to the given location. You just need to set the
 correct <code>COPY_AFTER_BUILD_BUILD_TYPE</code> to Debug, Release, or
 RelWithDebInfo, whatever you plan to build.
@@ -146,11 +146,17 @@ aria-hidden="true" class="octicon octicon-link"></span></a>Show me an example</h
 aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h3>
 <p>
 <ul>
-    <li><a href="https://github.com/burrito82/spvr.control">Control source
-        code</a> (check out with submodules to automatically include the
-    driver)</li>
-    <li><a href="https://github.com/burrito82/spvr.android">Android source code</a></li>
-    <li><a href="https://github.com/burrito82/spvr.driver">Driver source code</a></li>
+    <li><a href="https://github.com/burrito82/spvr">Complete source
+        code</a> (check out recursively)</li>
+    <ul>
+        <li><a href="https://github.com/burrito82/spvr.android">Android source code</a></li>
+        <li><a href="https://github.com/burrito82/spvr.control">Control source
+            code</a>
+        </li>
+        <ul>
+            <li><a href="https://github.com/burrito82/spvr.driver">Driver source code</a></li>
+        </ul>
+    </ul>
 </ul>
 </p>
 
@@ -163,6 +169,13 @@ some undefined behavior, e.g., multiple writers on shared memory. The android
 part is not implemented as a service, but instead sends sensor data from the
 main thread, which android, by default, usually probihits. Much stuff is
 hard-coded. On the other side, it works and development is fun!
+</p>
+<p>
+Issues are deactivated on the submodules-only repo, please post them to the
+according subproject on github, i.e.,
+<a href="https://github.com/burrito82/spvr.android/issues">android</a>,
+<a href="https://github.com/burrito82/spvr.control/issues">control</a>, and
+<a href="https://github.com/burrito82/spvr.driver/issues">driver</a>.
 </p>
 
 <h3><a id="faq" class="anchor" href="#faq" aria-hidden="true"><span
@@ -191,7 +204,8 @@ VR mode.
         <img class="button" src="images/spvr_logo.png" />
 
           <ul>
-            <li><a href="#video">Video</a></li>
+            <li><a href="#video">Demo Video</a></li>
+            <li><a href="#how-to">Build SPVR</a></li>
             <li><a href="#source-code">Source code</a></li>
             <li><a href="#development">Development and Contribution</a></li>
             <li><a href="#faq">F.A.Q.</a></li>
