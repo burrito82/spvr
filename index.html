@@ -64,20 +64,33 @@ aria-hidden="true" class="octicon octicon-link"></span></a>How does it work?</h3
 network (currently udp) to the Control instance on your PC, which further
 directs it to the driver instance in the game / application.</p>
 
-<h3><a id="how-to" class="anchor" href="#how-to" aria-hidden="true"><span
-aria-hidden="true" class="octicon octicon-link"></span></a>How can I build and
-use SPVR?</h3>
+<h3><a id="how-to-run" class="anchor" href="#how-to-run" aria-hidden="true"><span
+aria-hidden="true" class="octicon octicon-link"></span></a>How can I use SPVR?</h3>
+<p>
 For the windows part, you can either use the <a
 href="https://github.com/burrito82/spvr.control/files/196568/spvr.zip">provided
-binary</a> or build it yourself.
+binary</a> or build it yourself. You need to copy the dll into
+<code>PathTo/steamapps/common/SteamVR/drivers/spvr/bin/win32/driver_spvr.dll</code>.
+</p><p>
 For android you can download the <a
 href="https://github.com/burrito82/spvr.android/releases/download/v0.0/spvr-release.apk">provided
 apk</a> or build it yourself.
+</p>
+<p>
+At first spvr.control and the android app should be started and connected by
+entering the computer's IP in the app.
+Then the vrcompositor has to be started
+in debug mode:
+<code>vrcompositor.exe -keepalive -debug</code>. Now you can start TrinusVR or
+Moondlight for streaming, after which the game can be started.
+</p>
+
+<h3><a id="how-to-build" class="anchor" href="#how-to-build"
+aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>
+Building spvr</h3>
+This project consists of a C++ part (control and driver) and a Java part.
 <h4>spvr control and driver</h4>
-You can just download the <a
-href="https://github.com/burrito82/spvr.control/files/196568/spvr.zip">binary</a>,
-useful if you do not have any experience with C++ or Visual Studio. If you prefer
-building it yourself you need:
+If you prefer building it yourself you need:
 <ul>
     <li><a href="https://cmake.org/" target=_blank>CMake</a></li>
     <li>Visual Studio, tested with 2013 and 2015</li>
@@ -148,6 +161,28 @@ move with your mobile phone.
 After you established a connection with spvr and the compositor seems to work
 fine, you can start TrinusVR to transfer the rendered image back to your phone.
 
+<h3><a id="development" class="anchor" href="#development" aria-hidden="true"><span
+aria-hidden="true" class="octicon octicon-link"></span></a>Development and
+Contribution</h3>
+<p>
+Contribution would be great! The current state is not great, there is actually
+some undefined behavior, e.g., multiple writers on shared memory. The android
+part is not implemented as a service, but instead sends sensor data from the
+main thread, which android, by default, usually probihits. Much stuff is
+hard-coded. On the other side, it works and development is fun!
+</p>
+<p>
+Issues are deactivated on the submodules-only repo, please post them to the
+according subproject on gitlab (preferred), i.e.,
+<a target=_blank href="https://gitlab.com/spvr/android/issues">android</a>,
+<a target=_blank href="https://gitlab.com/spvr/control/issues">control</a>, and
+<a target=_blank href="https://gitlab.com/spvr/driver/issues">driver</a>,
+or, alternatively, on github:
+<a target=_blank href="https://github.com/burrito82/spvr.android/issues">android</a>,
+<a target=_blank href="https://github.com/burrito82/spvr.control/issues">control</a>, and
+<a target=_blank href="https://github.com/burrito82/spvr.driver/issues">driver</a>.
+</p>
+
 <h3><a id="source-code" class="anchor" href="#source-code" aria-hidden="true"><span
 aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h3>
 <p>
@@ -164,24 +199,6 @@ aria-hidden="true" class="octicon octicon-link"></span></a>Source Code</h3>
         </ul>
     </ul>
 </ul>
-</p>
-
-<h3><a id="development" class="anchor" href="#development" aria-hidden="true"><span
-aria-hidden="true" class="octicon octicon-link"></span></a>Development and
-Contribution</h3>
-<p>
-Contribution would be great! The current state is not great, there is actually
-some undefined behavior, e.g., multiple writers on shared memory. The android
-part is not implemented as a service, but instead sends sensor data from the
-main thread, which android, by default, usually probihits. Much stuff is
-hard-coded. On the other side, it works and development is fun!
-</p>
-<p>
-Issues are deactivated on the submodules-only repo, please post them to the
-according subproject on github, i.e.,
-<a href="https://github.com/burrito82/spvr.android/issues">android</a>,
-<a href="https://github.com/burrito82/spvr.control/issues">control</a>, and
-<a href="https://github.com/burrito82/spvr.driver/issues">driver</a>.
 </p>
 
 <h3><a id="faq" class="anchor" href="#faq" aria-hidden="true"><span
@@ -214,9 +231,24 @@ forget to set the new IP address.
 
           <ul>
             <li><a href="#video">Demo Video</a></li>
-            <li><a href="#how-to">Build SPVR</a></li>
-            <li><a href="#source-code">Source code</a></li>
+            <li><a href="#how-to-run">Run SPVR</a></li>
+            <li><a href="#how-to-build">Build SPVR</a></li>
             <li><a href="#development">Development and Contribution</a></li>
+            <li><a href="#source-code">Source code</a></li>
+            <li>on gitlab
+            <ul>
+                <li><a target=_blank href="https://gitlab.com/spvr/android/">android</a></li>
+                <li><a target=_blank href="https://gitlab.com/spvr/control/">control</a></li>
+                <li><a target=_blank href="https://gitlab.com/spvr/driver/">driver</a></li>
+            </ul>
+            </li>
+            <li>on github
+            <ul>
+                <li><a target=_blank href="https://github.com/burrito82/spvr.android/">android</a></li>
+                <li><a target=_blank href="https://github.com/burrito82/spvr.control/">control</a></li>
+                <li><a target=_blank href="https://github.com/burrito82/spvr.driver/">driver</a></li>
+            </ul>
+            </li>
             <li><a href="#faq">F.A.Q.</a></li>
           </ul>
 
