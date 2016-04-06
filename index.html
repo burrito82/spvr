@@ -107,10 +107,11 @@ contains the source code to <i>spvr.control</i> and <i>spvr.android</i>.
 </p>
 <p>Copy the glm header directory into <code>spvr/control_repo/driver/</code>.</p>
 <p>
-Then you need to generate project files for Visual Studio by using CMake.
+Then you need to generate project files for Visual Studio by using CMake, see
+Figure 1.
 <p align="center">
 <img src="images/cmake-example.jpg" alt="cmake configuration example" />
-Figure: example cmake configuration
+Figure 1: example cmake configuration
 </p>
 After compiling <i>spvr.driver</i> and <i>spvr.control</i>, the resulting
 <code>driver_spvr.dll</code> needs to be copied into
@@ -150,7 +151,13 @@ It should be easy to build and run the app.
 You can now start the <i>spvr.control</i> (allow network access) and run the
 SteamVR compositor with
 <code>PathTo/steamapps/common/SteamVR/bin/win32/vrcompositor.exe -keepalive
--debug</code>.
+-debug</code>, for example by creating a link to it and changing it, see Figure
+2.
+
+<p align="center">
+<img src="images/vrcompositor_link.jpg" alt="modified vrcompositor link" />
+Figure 2: modified link to vrcompositor.exe
+</p>
 </p>
 After building and running the android app, you can set the IP to the address
 of your computer.
