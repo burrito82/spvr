@@ -65,11 +65,11 @@ network (currently udp) to the Control instance on your PC, which further
 directs it to the driver instance in the game / application.</p>
 
 <h3><a id="how-to-run" class="anchor" href="#how-to-run" aria-hidden="true"><span
-aria-hidden="true" class="octicon octicon-link"></span></a>How can I use SPVR?</h3>
+aria-hidden="true" class="octicon octicon-link"></span></a>How can I run SPVR?</h3>
 <p>
 For the windows part, you can either use the <a
 href="https://github.com/burrito82/spvr.control/releases">provided
-binary</a> or build it yourself. You need to copy the dll into
+binary</a> or build it yourself. You need to copy the dll to
 <code>PathTo/steamapps/common/SteamVR/drivers/spvr/bin/win32/driver_spvr.dll</code>.
 </p><p>
 For android you can download the <a
@@ -78,10 +78,14 @@ apk</a> or build it yourself.
 </p>
 <p>
 At first spvr.control and the android app should be started and connected by
-entering the computer's IP in the app.
+entering the computer's IP in the app. <b>If spvr.control is not started, SteamVR
+/ vrcompositor will not detect any HMD! If you start SteamVR / vrcompositor
+before spvr.control it will not work!</b>
 Then the vrcompositor has to be started
 in debug mode:
-<code>vrcompositor.exe -keepalive -debug</code>. Now you can start TrinusVR or
+<code>vrcompositor.exe -keepalive -debug</code>. <b>This will not work if you
+    do not have a graphics card with DirectX 11 support!</b> In this case you
+cannot use SPVR! Now you can start TrinusVR or
 Moondlight for streaming, after which the game can be started.
 </p>
 
